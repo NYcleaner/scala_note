@@ -3,6 +3,28 @@ import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
 //1.单列对象》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》
+// 单例对象与类同名时，这个单例对象被称为这个类的伴生对象，而这个类被称为这个单例对象的伴生类。
+// 伴生类和伴生对象要在同一个源文件中定义，注意重点：伴生对象和伴生类可以互相访问其私有成员。不与伴生类同名的单例对象称为孤立对象。
+// class Account 是Account的半生类，可以和Account对象互相访问
+object Account0{
+  private var lastNumber = 0
+  def newUniqueNumber0() :Int ={lastNumber += 1; lastNumber}
+}
+class Account0(x:Int){
+  def t :Int = { x }
+  def t1: Int = x+1
+}
+
+//1.1此时Account1是孤立对象
+object Account1{
+  private var lastNumber = 0
+  def newUniqueNumber1(): Int = { lastNumber += 1; lastNumber}
+}
+
+class Account2{}
+// 上述三种情况下的object都叫单列对象，只是细分时候名字不一样而已。
+
+
 
 //2.scala apply 》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》》
 
@@ -11,7 +33,6 @@ import scala.util.Random
   * class Student是伴生对象Object Student的伴生类
   * object Student是伴生类class Student的伴生对象
   */
-
 
 //伴生类参数var是定义了成员属性
 class Student0(var name:String,var address:String){
